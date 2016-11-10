@@ -1,7 +1,7 @@
-var log = require('./LogBridge');
+var log = require('npmlog');
 var Promise = require('promise');
 var cheerio = require('cheerio');
-var provider = require('./od-provider.js');
+var provider = require('od-provider');
 var fs = require('fs');
 
 /*
