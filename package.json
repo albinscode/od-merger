@@ -7,5 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "fs": "0.0.1-security",
+    "npmlog": "^4.0.0",
+    "promise": "^7.1.1",
+    "od-provider": "git+https://github.com/albinscode/od-provider.git"
+  }
 }
