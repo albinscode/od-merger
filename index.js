@@ -47,11 +47,12 @@ module.exports.merge = function(output, filename) {
             }
             // To keep the sorting
             contents[key] = content;
+            return content
         }));
     });
 
     // We process the content of all files
-    Promise.all(promises).then(function() {
+    return Promise.all(promises).then(function() {
         $ = cheerio.load(contents[0].content, { xmlMode: true} );
         contents.forEach(function(value, key) {
             try {
@@ -65,11 +66,12 @@ module.exports.merge = function(output, filename) {
                 log.error('ods merger', e);
             }
         });
-        provider.update(mainFile, filename, $.html());
-        // We can delete the first file
-        fs.unlink(mainFile, function (err) {
-            if (err) throw err;
-        });
+        return provider.update(mainFile, filename, $.html()).then( () => {
+            // We can delete the first file
+            fs.unlink(mainFile, function (err) {
+                if (err) throw err;
+            });
+        })
 
     });
 };
